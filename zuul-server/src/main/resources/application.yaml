@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: zuul-server
+server:
+  port: 5555
+  servlet:
+    context-path: /cloud
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+zuul:
+  routes:
+    geek-spring-cloud-eureka-client: /gclient/**
+    secured-client: /secured/**
+    statistic-chain-client: /statistic/**
+    secured-feign-client: /feign/**
+  sensitiveHeaders: Cookie, Set-Cookie
+ribbon:
+  ReadTimeout: 60000
